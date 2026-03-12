@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Munich Transit Pulse</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Live departures for Munich</p>
+          <h1>Munich Transit Pulse</h1>
+          <p class="subtitle">Pick a station, filter by transport mode, and see the next departures in realtime.</p>
+        </div>
+        <button id="themeToggle" class="ghost-btn" type="button" aria-label="Toggle dark mode">🌙</button>
+      </header>
+
+      <section class="panel controls">
+        <div class="control-row">
+          <label for="stationInput">Station</label>
+          <div class="station-picker">
+            <input id="stationInput" list="stationSuggestions" placeholder="Type station name (e.g. Marienplatz)" autocomplete="off" />
+            <datalist id="stationSuggestions"></datalist>
+            <button id="loadDepartures" type="button">Load</button>
+          </div>
+        </div>
+
+        <div class="control-row">
+          <span>Transport filters</span>
+          <div id="filterGroup" class="chips"></div>
+        </div>
+
+        <div class="control-row inline">
+          <label class="switch">
+            <input id="autoRefresh" type="checkbox" checked />
+            <span>Auto refresh (30s)</span>
+          </label>
+          <button id="saveFavorite" class="ghost-btn" type="button">⭐ Save station</button>
+          <select id="favorites">
+            <option value="">Favorites</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="panel status">
+        <p id="statusText">Search a station to begin.</p>
+      </section>
+
+      <section class="panel">
+        <div class="departures-head">
+          <h2>Upcoming departures</h2>
+          <span id="lastUpdated"></span>
+        </div>
+        <div id="departures" class="departures-grid empty">
+          <p>No departures loaded.</p>
+        </div>
+      </section>
+    </div>
+
+    <template id="departureCardTemplate">
+      <article class="departure-card">
+        <div class="line-chip"></div>
+        <div class="info">
+          <h3></h3>
+          <p class="destination"></p>
+          <p class="platform"></p>
+        </div>
+        <div class="eta"></div>
+      </article>
+    </template>
+
+    <script src="app.js" type="module"></script>
+  </body>
+</html>
